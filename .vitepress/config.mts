@@ -4,9 +4,10 @@ import { withPwa } from '@vite-pwa/vitepress'
 import { fileURLToPath } from 'node:url'
 import lab from '../lab.config.mts'
 import { linkPreviews } from './og.mts'
-import { all, sidebar } from './lab.mts'
+import { all, experimentEdges, sidebar } from './lab.mts'
 
 const srcDir = fileURLToPath(new URL('..', import.meta.url))
+const edges = experimentEdges(srcDir)
 // BASE_PATH is set by the GitHub Pages workflow ("/repo-name/" or "/" with a custom domain).
 const base = process.env.BASE_PATH || '/'
 const short = lab.code.toUpperCase()
@@ -64,6 +65,8 @@ export default withPwa(defineConfig({
 
   // The home page's front matter uses $code, $name, $platform and $manual; its cards come from lab.config.mts
   transformPageData(pageData) {
+    // No Previous page on the first experiment, no Next page on the last (see lab.mts)
+    edges(pageData)
     if (pageData.frontmatter.layout !== 'home') return
     pageData.frontmatter = fill(pageData.frontmatter)
     // The feature cards come from lab.config.mts unless index.md lists its own
