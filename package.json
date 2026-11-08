@@ -1,0 +1,28 @@
+{
+  "name": "ece-lab-template",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "predev": "node scripts/brand.mts",
+    "dev": "vitepress dev",
+    "prebuild": "node scripts/brand.mts",
+    "build": "vitepress build",
+    "preview": "vitepress preview",
+    "smoke-test:pwa": "node scripts/smoke-test-pwa.mjs"
+  },
+  "devDependencies": {
+    "@fontsource/jetbrains-mono": "^5.3.0",
+    "@resvg/resvg-js": "^2.6.2",
+    "@vite-pwa/vitepress": "^1.1.0",
+    "satori": "^0.63.2",
+    "vite-plugin-pwa": "^2.0.0",
+    "vitepress": "^2.0.0-alpha.21",
+    "vue": "^3.5.44"
+  },
+  "overrides": {
+    "@vite-pwa/vitepress": {
+      "vite-plugin-pwa": "$vite-plugin-pwa"
+    },
+    "glob": "^14.0.3"
+  }
+}

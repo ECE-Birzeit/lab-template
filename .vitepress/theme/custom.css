@@ -1,0 +1,62 @@
+/* Brand colours come from lab.config.mts (config.mts adds them to the page head). */
+
+/* Push the last two sidebar groups (Downloads, Documentation) to the bottom. */
+.VPSidebar .nav {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.VPSidebar .nav > .group:nth-last-child(2) {
+  margin-top: auto;
+}
+
+/* VitePress leaves 6rem under the sidebar and 1.5rem under the last group,
+   which floats the bottom groups off the edge. Sit them on it instead. */
+.Layout .VPSidebar {
+  padding-bottom: 1rem;
+}
+
+.VPSidebar .nav > .group:last-child .VPSidebarItem.level-0 {
+  padding-bottom: 0;
+}
+
+/* Figures and Keil screenshots are the point of these pages, so give them
+   a frame and a light backdrop that survives dark mode. */
+.vp-doc img {
+  border-radius: 8px;
+  border: 1px solid var(--vp-c-divider);
+  background: #fff;
+  margin: 0 auto;
+}
+/* Home hero image: the course icon (favicon.svg), tilted, floating gently.
+   No glow behind it. */
+.VPHero .image-bg {
+  display: none;
+}
+.VPHero .image-src {
+  max-width: 10rem;
+  max-height: 10rem;
+  transform: translate(-50%, -50%) rotate(-10deg);
+  filter: drop-shadow(0 20px 32px rgba(0, 0, 0, 0.3));
+  animation: hero-float 6s ease-in-out infinite;
+}
+@keyframes hero-float {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -10px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .VPHero .image-src {
+    animation: none;
+  }
+}
+@media (min-width: 640px) {
+  .VPHero .image-src { max-width: 12.5rem; max-height: 12.5rem; }
+}
+@media (min-width: 960px) {
+  .VPHero .image-src { max-width: 15rem; max-height: 15rem; }
+}
+
+/* <ExperimentList>: the Experiment Navigator table; experiments still to come are greyed */
+.vp-doc .exp-list td:first-child { text-align: center; font-variant-numeric: tabular-nums }
+.vp-doc .exp-list tr.planned td { color: var(--vp-c-text-3) }
