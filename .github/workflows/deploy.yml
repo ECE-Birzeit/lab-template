@@ -25,7 +25,9 @@ jobs:
         with:
           node-version: 24
           cache: npm
+      # The template repository itself only builds and tests; the labs made from it deploy
       - id: pages
+        if: github.repository != 'ECE-Birzeit/lab-template'
         uses: actions/configure-pages@v6
       - run: npm ci
       - name: Build
@@ -35,11 +37,13 @@ jobs:
           BASE_PATH: ${{ steps.pages.outputs.base_path }}/
       - name: Smoke test PWA service worker
         run: npm run smoke-test:pwa
-      - uses: actions/upload-pages-artifact@v5
+      - if: github.repository != 'ECE-Birzeit/lab-template'
+        uses: actions/upload-pages-artifact@v5
         with:
           path: .vitepress/dist
 
   deploy:
+    if: github.repository != 'ECE-Birzeit/lab-template'
     needs: build
     runs-on: ubuntu-latest
     environment:
