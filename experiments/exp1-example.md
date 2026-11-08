@@ -9,6 +9,9 @@ short: Example Experiment
 description: What a finished experiment page looks like. Copy exp2-blank.md to start a new one.
 # Optional: group experiments under a heading in the sidebar, e.g. "Part 1: Assembly"
 # part: "Part 1: Getting started"
+# Optional: open this experiment's chapter of the manual from the "Lab manual (PDF)" button.
+# Without it the button opens the whole manual set in lab.config.mts (#page=N jumps to a page).
+# manual: "/ENCS0000-Manual.pdf#page=5"
 outline: deep
 ---
 

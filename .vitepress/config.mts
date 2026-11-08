@@ -85,8 +85,9 @@ export default withPwa(defineConfig({
   themeConfig: {
     logo: '/favicon.svg',
     siteTitle: `${short}-BZU`,
-    // For the theme: the lab code, and the experiments still to come (the Experiment Navigator lists them)
-    lab: { code: lab.code.toLowerCase(), planned: lab.planned },
+    // For the theme: the lab code, the experiments still to come (the Experiment Navigator lists them),
+    // and the manual, for the "Lab manual (PDF)" button on experiment pages
+    lab: { code: lab.code.toLowerCase(), planned: lab.planned, manual: lab.manual ? `/${lab.manual}` : null },
 
     nav: [
       { text: 'Home', link: '/' },

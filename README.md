@@ -11,6 +11,7 @@ You write the pages. The rest is handled for you:
 - **Link previews**: every experiment gets its own banner (lab code, experiment number and title, in the lab's colour) when the site builds, for WhatsApp, Telegram, Teams and search engines.
 - **Favicon, app icons and site banner**: drawn from the lab's colour on the first build.
 - **Home page**: filled from `lab.config.mts`.
+- **Buttons on every experiment**: *Jump to the procedure* (the first section after Background) and *Lab manual (PDF)* once the manual is set in `lab.config.mts`.
 - **Deploys**: every push to `main` publishes the site with GitHub Pages.
 
 ## Start a new lab
@@ -57,6 +58,7 @@ title: GPIO and Interrupts          # the page title
 short: GPIO and Interrupts          # optional, a shorter name for the sidebar
 description: One line for the navigator and link previews
 part: "Part 2: The board"           # optional, groups experiments in the sidebar
+manual: "/ENCS0000-Manual.pdf#page=12"  # optional, the chapter the Lab manual button opens
 ---
 ```
 
