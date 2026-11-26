@@ -45,6 +45,18 @@ export default withPwa(defineConfig({
   description,
   srcExclude: ['README.md', 'snippets/**'],
   cleanUrls: true,
+
+  vite: {
+    resolve: {
+      alias: [
+        // "On this page" with foldable sections (theme/components/CollapsibleOutline.vue)
+        {
+          find: /^.*\/VPDocAsideOutline\.vue$/,
+          replacement: fileURLToPath(new URL('./theme/components/CollapsibleOutline.vue', import.meta.url)),
+        },
+      ],
+    },
+  },
   lastUpdated: true,
 
   head: [
