@@ -101,12 +101,13 @@ export default withPwa(defineConfig({
     logo: '/favicon.svg',
     siteTitle: `${short}-BZU`,
     // For the theme: the lab code, the experiments still to come (the Experiment Navigator lists them),
-    // and the manual, for the "Lab manual (PDF)" button on experiment pages
-    lab: { code: lab.code.toLowerCase(), planned: lab.planned, manual: lab.manual ? `/${lab.manual}` : null },
+    // the manual, for the "Lab manual (PDF)" button on experiment pages, and the pinout boards, if any
+    lab: { code: lab.code.toLowerCase(), planned: lab.planned, manual: lab.manual ? `/${lab.manual}` : null, pinout: lab.pinout },
 
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Experiments', link: '/experiments/', activeMatch: '/experiments/' },
+      ...(lab.pinout ? [{ text: 'Pinout', link: '/setup/pinout', activeMatch: '/setup/pinout' }] : []),
       { text: 'All labs', link: 'https://birzeit.me/' },
     ],
 

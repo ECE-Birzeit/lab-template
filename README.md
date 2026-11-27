@@ -12,6 +12,8 @@ You write the pages. The rest is handled for you:
 - **Favicon, app icons and site banner**: drawn from the lab's colour on the first build.
 - **Home page**: filled from `lab.config.mts`.
 - **Buttons on every experiment**: *Jump to the procedure* (the first section after Background) and *Lab manual (PDF)* once the manual is set in `lab.config.mts`.
+- **Checklists**: a `<Checklist>` after the Activity and the Task turns a markdown list into boxes students tick. Ticks are saved in the browser, and *Clear all* resets the page for the next section on a shared lab PC.
+- **Board pinout**: set `pinout` in `lab.config.mts` and every experiment page gets a *Pinout* button, at the top and floating in the corner, that opens the board's pinout over the page, plus a Pinout link in the nav. Each board needs two drawings, `public/images/pinout/<key>-top.svg` and `<key>-bottom.svg`, made from the board's own pin and CAD data, and a full page at `setup/pinout.md`. Leave it `null` and nothing appears.
 - **Deploys**: every push to `main` publishes the site with GitHub Pages.
 
 ## Start a new lab
@@ -62,8 +64,19 @@ manual: "/ENCS0000-Manual.pdf#page=12"  # optional, the chapter the Lab manual b
 ---
 ```
 
-Each experiment has the same sections, in this order: **Objectives**, **Background**, **Examples**,
-**Lab work** (graded by the TA; no solutions), **Common problems**.
+Each experiment has the same sections, in this order: **Objectives**, **Background**, **Activity**
+and **Task**. `experiments/exp1-example.md` shows each part:
+
+- **Activity**: one working program, built in `### Step N` sections with all the code given, one
+  snippet region per step. It ends with an Activity checklist, then collapsed boxes for *More to try*
+  (one table), *The complete program* and *Common problems*.
+- **Task**: builds on the Activity. A starter program with its TODO lines marked
+  `// [!code highlight]`, a collapsed box with one hint box per TODO, and a Task checklist. It's
+  graded by the TA: keep model solutions out of the repository.
+- **Code**: name every pin, bit and value with a `#define` (`EQU` in assembly), so the code reads as
+  what it does.
+- **Keep it short**: anything that isn't needed to finish the Activity or the Task goes in a table
+  or a collapsed box.
 
 ## How it works
 

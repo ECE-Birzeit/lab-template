@@ -22,6 +22,13 @@ export default {
   // Every lab on birzeit.me has its own; pick one that isn't taken (red 4110, blue 4101, orange 5150, teal 5101).
   accent: { light: '#6d28d9', dark: '#a78bfa' },
 
+  // The board pinout, one button away on every experiment page (a floating button, a "Pinout" button at
+  // the top of the page and a Pinout link in the nav), or null for none. Each board needs two drawings,
+  // public/images/pinout/<key>-top.svg and <key>-bottom.svg, drawn from the board's own pin and CAD data,
+  // `width` px wide, and a full page with the pin tables at setup/pinout.md. See README.md.
+  pinout: null as null | { boards: { key: string; label: string }[]; width: number },
+  // e.g. pinout: { boards: [{ key: 'launchpad', label: 'LaunchPad' }], width: 2200 },
+
   // The department's manual as a PDF in public/, or null when there isn't one
   manual: null as string | null, // e.g. 'ENCS0000-Manual.pdf'
 
